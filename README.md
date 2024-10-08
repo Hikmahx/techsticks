@@ -19,7 +19,7 @@ Building tech knowledge, one stick at a time
 
 ## Introduction
 
-Tech Sticks is an open-source, collaborative tech resource platform where users can discover and contribute valuable resources across various fields, including design, AI, blogs, testing, accessibility, and more. The website features a minimalist stick figure theme, showcasing a playful logo in which a stick figure takes victorious steps on the "t's" in "Tech" and "Sticks."
+Tech Sticks is an open-source, collaborative tech resource platform where users can discover and contribute valuable resources across various fields, including design, AI, blogs, testing, accessibility, and more. The website features a minimalist stick figure theme, showcasing a playful logo where a stick figure takes victorious steps on the "t's" in "Tech" and "Sticks."
 
 ### Objectives
 
@@ -34,8 +34,6 @@ Tech Sticks is an open-source, collaborative tech resource platform where users 
   - **AI**: AI tools, libraries, articles, and more.
   - **Blogs**: Discover the best blogs and articles in the tech industry.
   - **Communities & Tools**: Access resources to improve your development workflow.
-
-- **Subsections**: Some categories contain subsections (e.g., Design, GitHub profiles, etc.) for better navigation and organization.
 
 (More categories to be included in the future.)
 
@@ -74,11 +72,64 @@ Here's how you can contribute:
 3. **Commit your changes** and push to the branch:
    ```bash
    git commit -m "Add a new feature"
-   git push origin feature/your-feature-name
+   git push origin feature/your-feature-title
    ```
 4. **Open a Pull Request** and it will be reviewed.
 
-Make sure to add new resources in the appropriate `resources` file (e.g., `design.js`, `ai.js`).
+### Adding Resources
+
+- Make sure to add new resources in the appropriate `resources` file (e.g., `design.js`, `ai.js`).
+
+```js
+{
+  title: "",            // Title of the resource
+  link: "",             // URL to the resource
+  description: "",      // Brief description of what the resource offers (string)
+  imageUrl: "",         // A main image from the website (optional)
+  dateAdded: "",        // Date when the resource was added (date string)
+  level: "",            // Difficulty level: 'any', 'beginner', 'intermediate', 'advanced'
+  subsection: [],       // Subsection: Specific to each file (array of up to 3)
+  tags: [],             // Additional tags for categorization (optional, max 5)
+}
+```
+
+### Note:
+
+- Always check the comment at the top of each `.js` file you intend to contribute to for any additional information.
+- You must choose from the predefined subsections or tags and can only add a new one if no suitable option exists.
+- If you are adding more than one feature, add them all in a single pull request.
+- You cannot add more than three features to a file in a single pull request.
+- Make sure that none of the new resource objects you are adding are already included in any of the available files.
+
+### Example
+
+- **Branch**:
+
+  - **Single Resource**:
+
+    ```bash
+    git checkout -b feature/add-tailwindcss
+    ```
+
+  - **Multiple Resources**:
+
+    ```bash
+    git checkout -b feature/add-tailwindcss-reactjs
+    ```
+
+- **Resource Object**:
+  ```js
+  {
+    title: "Learn React",
+    link: "https://reactjs.org/",
+    description: "An official React documentation site for learning React.",
+    imageUrl: "https://reactjs.org/logo-og.png",
+    dateAdded: "2024-10-08",
+    level: "beginner",
+    subsection: ["Frontend", "JavaScript"],
+    tags: ["React", "JavaScript", "Frontend"],
+  }
+  ```
 
 ## Tech Stack
 
@@ -88,7 +139,7 @@ Tech Sticks is built using the following technologies:
 - [Tailwindcss](https://tailwindcss.com/) - Utility-first CSS framework
 - [Typescript](https://www.typescript.org/) - A typed superset of JavaScript
 - [shadcn/ui](https://ui.shadcn.com/) – Customizable UI components with Radix and Tailwind
-- [Figma](www.figma.com) - UI design tool
+- [Figma](https://www.figma.com) - UI design tool
 
 ## Support
 
