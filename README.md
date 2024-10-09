@@ -7,12 +7,13 @@ Building tech knowledge, one stick at a time
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Objectives](#objectives)
-<!-- - [Current Resources](#current-resources) -->
+    - [Objectives](#objectives)
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Folder Structure](#folder-structure)
 - [How to Contribute](#how-to-contribute)
+    - [Adding Resources](#adding-resources)
+    - [Note](#note)
+    - [Example](#example)
 - [Tech Stack](#tech-stack)
 - [Support](#support)
 - [License](#license)
@@ -89,14 +90,13 @@ Here's how you can contribute:
   dateAdded: "",        // Date when the resource was added (date string)
   level: "",            // Difficulty level: 'any', 'beginner', 'intermediate', 'advanced'
   subsection: [],       // Subsection: Specific to each file (array of up to 3)
-  tags: [],             // Additional tags for categorization (optional, max 5)
 }
 ```
 
 ### Note:
 
 - Always check the comment at the top of each `.js` file you intend to contribute to for any additional information.
-- You must choose from the predefined subsections or tags and can only add a new one if no suitable option exists.
+- You must choose from the predefined subsections and can only add a new one if no suitable option exists.
 - If you are adding more than one feature, add them all in a single pull request.
 - You cannot add more than three features to a file in a single pull request.
 - Make sure that none of the new resource objects you are adding are already included in any of the available files.
@@ -127,7 +127,6 @@ Here's how you can contribute:
     dateAdded: "2024-10-08",
     level: "beginner",
     subsection: ["Frontend", "JavaScript"],
-    tags: ["React", "JavaScript", "Frontend"],
   }
   ```
 
