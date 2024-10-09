@@ -7,12 +7,13 @@ Building tech knowledge, one stick at a time
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Objectives](#objectives)
-<!-- - [Current Resources](#current-resources) -->
+  - [Objectives](#objectives)
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Folder Structure](#folder-structure)
 - [How to Contribute](#how-to-contribute)
+  - [Adding Resources](#adding-resources)
+  - [Note](#note)
+  - [Example](#example)
 - [Tech Stack](#tech-stack)
 - [Support](#support)
 - [License](#license)
@@ -88,8 +89,8 @@ Here's how you can contribute:
   imageUrl: "",         // A main image from the website (optional)
   dateAdded: "",        // Date when the resource was added (date string)
   level: "",            // Difficulty level: 'any', 'beginner', 'intermediate', 'advanced'
-  subsection: [],       // Subsection: Specific to each file (array of up to 3)
-  tags: [],             // Additional tags for categorization (optional, max 5)
+  subsection: [],       // Subsection: Specific to each file (max 2)
+  tags: [],             // Additional tags for categorization (optional, max 3)
 }
 ```
 
@@ -118,17 +119,21 @@ Here's how you can contribute:
     ```
 
 - **Resource Object**:
+
   ```js
-  {
-    title: "Learn React",
-    link: "https://reactjs.org/",
-    description: "An official React documentation site for learning React.",
-    imageUrl: "https://reactjs.org/logo-og.png",
-    dateAdded: "2024-10-08",
-    level: "beginner",
-    subsection: ["Frontend", "JavaScript"],
-    tags: ["React", "JavaScript", "Frontend"],
-  }
+  const frameworks = [
+  ...
+   {
+      title: "React",
+      link: "https://reactjs.org/",
+      description: "JavaScript library for building user interfaces.",
+      imageUrl: "https://reactjs.org/logo-og.png",
+      dateAdded: "2024-10-08",
+      level: "beginner",
+      subsection: ["Frontend"],
+   },
+   ...
+  ]
   ```
 
 ## Tech Stack
