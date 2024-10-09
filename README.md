@@ -20,7 +20,7 @@ Building tech knowledge, one stick at a time
 
 ## Introduction
 
-Tech Sticks is an open-source, collaborative tech resource platform where users can discover and contribute valuable resources across various fields, including design, AI, blogs, testing, accessibility, and more. The website features a minimalist stick figure theme, showcasing a playful logo where a stick figure takes victorious steps on the "t's" in "Tech" and "Sticks."
+Tech Sticks is an open-source, collaborative tech resource platform where users can discover and contribute valuable resources across various fields, including design, AI, blogs, testing, accessibility, and more.
 
 ### Objectives
 
