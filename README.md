@@ -85,11 +85,11 @@ Here's how you can contribute:
 {
   title: "",            // Title of the resource
   link: "",             // URL to the resource
-  description: "",      // Brief description of what the resource offers (string)
+  description: "",      // Brief description of what the resource offers 
   imageUrl: "",         // A main image from the website (optional)
   dateAdded: "",        // Date when the resource was added (date string)
-  level: "",            // Difficulty level: 'any', 'beginner', 'intermediate', 'advanced'
-  subsection: [],       // Subsection: Specific to each file (max 2)
+  level: "",            // Difficulty level ('any', 'beginner', 'intermediate', 'advanced')
+  subsection: "",       // Subsection: Specific to each file (check file for available subsections)
   tags: [],             // Additional tags for categorization (optional, max 5)
 }
 ```
@@ -97,7 +97,7 @@ Here's how you can contribute:
 ### Note:
 
 - Always check the comment at the top of each `.js` file you intend to contribute to for any additional information.
-- You must choose from the predefined subsections and can only add a new one if no suitable option exists.
+- You must choose from the predefined subsections & tags and can only add a new one if no suitable option exists.
 - If you are adding more than one feature, add them all in a single pull request.
 - You cannot add more than three features to a file in a single pull request.
 - Make sure that none of the new resource objects you are adding are already included in any of the available files.
@@ -130,7 +130,7 @@ Here's how you can contribute:
       imageUrl: "https://reactjs.org/logo-og.png",
       dateAdded: "2024-10-08",
       level: "beginner",
-      subsection: ["Frontend"],
+      subsection: "Frontend",
    },
    ...
   ]
