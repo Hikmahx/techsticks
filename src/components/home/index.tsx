@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card'
+import Link from 'next/link';
 
 export function HeroSection() {
   return (
@@ -50,7 +51,7 @@ export function HeroSection() {
 export function WhyTechSticks() {
     return (
       <section className='container mx-auto px-4 py-12 text-center md:text-left'>
-        <h2 className='text-2xl md:text-3xl font-bold '>Why TechSticks?</h2>
+        <h2 className='text-2xl md:text-3xl font-bold mb-4'>Why TechSticks?</h2>
         <div className=''>
           <Card className='border-none shadow-none'>
             <CardContent className='flex flex-col md:flex-row md:items-center md:space-x-8 px-6 py-2 md:py-4'>
@@ -95,4 +96,52 @@ export function WhyTechSticks() {
         </div>
       </section>
     )
+}
+
+type ResourceItem = {
+  id: string
+  name: string
+  icon: string
+  resourceCount: number
+}
+
+const resourceItems: ResourceItem[] = [
+  { id: 'ai', name: 'AI', icon: '/resources/ai.svg', resourceCount: 12 },
+  { id: 'web-development', name: 'Web Development', icon: '/resources/web-development.svg', resourceCount: 17 },
+  { id: 'accessibility', name: 'Accessibility', icon: '/resources/accessibility.svg', resourceCount: 6 },
+  { id: 'testing', name: 'Testing', icon: '/resources/testing.svg', resourceCount: 17 },
+  { id: 'community', name: 'Community', icon: '/resources/community.svg', resourceCount: 17 },
+  { id: 'design', name: 'Design', icon: '/resources/design.svg', resourceCount: 17 },
+]
+
+const ResourceCard = ({ resource }: { resource: ResourceItem }) => (
+  <Link href={`/resources/${resource.id}`} className='block'>
+  <Card className='overflow-hidden transition-all hover:shadow-lg bg-primary/20 hover:bg-primary/30 fill-red-50 hover:stroke-yellow-30 border-none'>
+    <CardContent className='p-6'>
+      <div className='flex flex-col items-center text-center'>
+        <Image src={resource.icon} alt={resource.name} width={80} height={80} className='mb-4' />
+        <h3 className='text-lg font-semibold mb-2'>{resource.name}</h3>
+        <p className='text-sm text-muted-foreground'>{resource.resourceCount} Resources</p>
+      </div>
+    </CardContent>
+  </Card>
+  </Link>
+)
+
+export function AvailableResources() {
+  return (
+    <div className='bg-gray-50'>
+    <section className='container mx-auto px-4 py-12'>
+      <div className='flex justify-between items-start mb-8 gap-x-8'>
+        <h2 className='text-2xl md:text-3xl font-bold'>Available Resource Section</h2>
+        <Button variant='secondary' className='bg-yellow-400 text-black hover:bg-yellow-500'>View All</Button>
+      </div>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+        {resourceItems.map((item) => (
+          <ResourceCard key={item.id} resource={item} />
+        ))}
+      </div>
+    </section>
+    </div>
+  )
 }

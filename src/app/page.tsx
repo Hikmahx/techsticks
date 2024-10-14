@@ -1,4 +1,4 @@
-import { HeroSection, WhyTechSticks } from '@/components/home';
+import { AvailableResources, HeroSection, WhyTechSticks } from '@/components/home';
 
 export default function Home() {
   return (
@@ -6,6 +6,7 @@ export default function Home() {
       <main className=''>
         <HeroSection />
         <WhyTechSticks />
+        <AvailableResources />
       </main>
     </div>
   );
