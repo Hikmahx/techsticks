@@ -133,7 +133,7 @@ export function AvailableResources() {
     <div className='bg-gray-50'>
     <section className='container mx-auto px-4 py-12'>
       <div className='flex justify-between items-start mb-8 gap-x-8'>
-        <h2 className='text-2xl md:text-3xl font-bold'>Available Resource Section</h2>
+        <h2 className='text-2xl md:text-3xl font-bold'>Available Resource Categories</h2>
         <Button variant='secondary' className='bg-yellow-400 text-black hover:bg-yellow-500'>View All</Button>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
