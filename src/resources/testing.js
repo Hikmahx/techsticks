@@ -1,58 +1,19 @@
-import designResources from '../resources/design';
-import aiResources from '../resources/ai';
-import blogResources from '../resources/blog';
+// Available subsection list for Testing.js: ['General', 'Unit Testing', 'Integration Testing', 'End-to-End Testing']
+// Available tags list for Testing.js: ['unit testing', 'automation', 'integration testing', 'e2e testing', 'testing tools']
 
-const ResourcesPage = () => {
-  return (
-    <div>
-      <h1>Resources</h1>
-      
-      <h2>Design Resources</h2>
-      {Object.keys(designResources).map((category) => (
-        <div key={category}>
-          <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-          <ul>
-            {designResources[category].map((resource, index) => (
-              <li key={index}>
-                <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.title}</a>
-                <p>{resource.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-      
-      <h2>AI Resources</h2>
-      {Object.keys(aiResources).map((category) => (
-        <div key={category}>
-          <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-          <ul>
-            {aiResources[category].map((resource, index) => (
-              <li key={index}>
-                <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.title}</a>
-                <p>{resource.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-
-      <h2>Blog Resources</h2>
-      {Object.keys(blogResources).map((category) => (
-        <div key={category}>
-          <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
-          <ul>
-            {blogResources[category].map((resource, index) => (
-              <li key={index}>
-                <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.title}</a>
-                <p>{resource.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
+const testing = {
+  name: 'Testing',
+  icon: '/resources/testing',
+  resources: [
+    {
+      title: 'Cypress',
+      link: 'https://www.cypress.io/',
+      description: 'Fast, easy, and reliable testing for anything that runs in a browser.',
+      imageUrl: 'https://www.cypress.io/_astro/navbar-brand.D87396b0.svg',
+      dateAdded: '2024-10-09',
+      level: 'any',
+      subsection: 'End-to-End Testing',
+      tags: ['e2e testing', 'automation', 'testing tools'],
+    },
+  ],
 };
-
-export default ResourcesPage;
