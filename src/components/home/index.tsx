@@ -220,12 +220,18 @@ export function OpenSourceContribution() {
             </p>
           </div>
           <div>
-            <Button
-              size='lg'
-              className='bg-primary text-white font-quicksand hover:bg-primary/60 font-semibold'
+            <Link
+              href='https://github.com/Hikmahx/techsticks'
+              target='_blank'
+              rel='noopener noreferrer'
             >
-              Let{"'"}s Collaborate
-            </Button>
+              <Button
+                size='lg'
+                className='bg-primary text-white font-quicksand hover:bg-primary/60 font-semibold'
+              >
+                Let{"'"}s Collaborate
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
