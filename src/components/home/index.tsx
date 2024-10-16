@@ -208,14 +208,14 @@ export function AvailableResources() {
 
 export function OpenSourceContribution() {
   return (
-    <section className='w-full py-16 bg-white'>
+    <section className='w-full py-20 bg-white'>
       <div className='container mx-auto px-4'>
         <div className='flex flex-col md:flex-row items-center md:items-start justify-between'>
           <div className='lg:w-2/3 mb-6 lg:mb-0 md:gap-x-8 px-3 md:px-6'>
-            <h2 className='font-quicksand text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8 tracking-wider leading-relaxed text-center md:text-left'>
+            <h2 className='font-quicksand text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 tracking-wider leading-relaxed text-center md:text-left'>
               Would You Like To Contribute To This Project?
             </h2>
-            <p className='lg:text-lg text-muted-foreground text-center md:text-left'>
+            <p className='text-muted-foreground text-center md:text-left'>
               There are several ways to contribute to Tech Stick, whether
               through coding, new features, or enriching our resource
               collection. This open-source project is beginner-friendly, and
