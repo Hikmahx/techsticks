@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className='w-full py-6 bg-zinc-900 text-white'>
       <div className='container mx-auto px-4'>
@@ -18,7 +19,9 @@ export default function Footer() {
               />
             </Link>
           </div>
-          <div className='text-sm text-right md:text-center'>©2024 TechSticks. All Rights Reserved.</div>
+          <div className='text-sm text-right md:text-center'>
+            ©{currentYear} TechSticks. All Rights Reserved.
+          </div>
         </div>
       </div>
     </footer>
