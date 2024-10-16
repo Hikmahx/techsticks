@@ -101,6 +101,7 @@ Here's how you can contribute:
 - If you are adding more than one feature, add them all in a single pull request.
 - You cannot add more than three features to a file in a single pull request.
 - Make sure that none of the new resource objects you are adding are already included in any of the available files.
+- If the resource you want to add fits into multiple categories, place it in the one with the highest priority and list the other applicable categories as tags. Ensure the tags are ordered by priority, from highest to lowest.
 
 ### Example
 
