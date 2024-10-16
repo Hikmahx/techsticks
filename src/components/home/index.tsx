@@ -222,7 +222,7 @@ export function OpenSourceContribution() {
           <div>
             <Button
               size='lg'
-              className='bg-yellow-400 text-zinc-800 font-quicksand hover:bg-yellow-300 font-semibold'
+              className='bg-primary text-white font-quicksand hover:bg-primary/60 font-semibold'
             >
               Let{"'"}s Collaborate
             </Button>
