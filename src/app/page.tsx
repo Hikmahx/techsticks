@@ -1,4 +1,9 @@
-import { AvailableResources, HeroSection, WhyTechSticks } from '@/components/home';
+import {
+  AvailableResources,
+  HeroSection,
+  OpenSourceContribution,
+  WhyTechSticks,
+} from '@/components/home';
 
 export default function Home() {
   return (
@@ -7,6 +12,7 @@ export default function Home() {
         <HeroSection />
         <WhyTechSticks />
         <AvailableResources />
+        <OpenSourceContribution />
       </main>
     </div>
   );
