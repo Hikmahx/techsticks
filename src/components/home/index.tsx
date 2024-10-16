@@ -17,12 +17,14 @@ export function HeroSection() {
               Sticks provides a curated collection of tools, articles,
               communities, and more across various tech fields.
             </p>
-            <Button
-              size='lg'
-              className='bg-yellow-400 text-zinc-800 font-quicksand hover:bg-yellow-300 font-semibold'
-            >
-              Explore Resources
-            </Button>
+            <Link href='/resources'>
+              <Button
+                size='lg'
+                className='bg-yellow-400 text-zinc-800 font-quicksand hover:bg-yellow-300 font-semibold'
+              >
+                Explore Resources
+              </Button>
+            </Link>
           </div>
           <div className='w-full lg:flex-1 relative lg:order-2'>
             <div className='max-w-xs ml-auto'>
@@ -185,12 +187,14 @@ export function AvailableResources() {
           <h2 className='text-2xl md:text-3xl font-bold'>
             Available Resource Categories
           </h2>
-          <Button
-            variant='secondary'
-            className='bg-yellow-400 text-black hover:bg-yellow-500'
-          >
-            View All
-          </Button>
+          <Link href='/resources'>
+            <Button
+              variant='secondary'
+              className='bg-yellow-400 text-black hover:bg-yellow-500 font-semibold font-quicksand'
+            >
+              View All
+            </Button>
+          </Link>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
           {resourceItems.map((item) => (

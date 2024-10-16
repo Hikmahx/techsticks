@@ -7,13 +7,11 @@ import {
 
 export default function Home() {
   return (
-    <div className=''>
-      <main className=''>
-        <HeroSection />
-        <WhyTechSticks />
-        <AvailableResources />
-        <OpenSourceContribution />
-      </main>
-    </div>
+    <main className=''>
+      <HeroSection />
+      <WhyTechSticks />
+      <AvailableResources />
+      <OpenSourceContribution />
+    </main>
   );
 }

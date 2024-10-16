@@ -15,7 +15,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full">
+    <header className="w-full bg-white">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
           <Image

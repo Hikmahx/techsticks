@@ -17,7 +17,9 @@ export default function RootLayout({
     <html lang='en'>
       <body className='font-sans font-normal'>
         <Header />
-        {children}
+        <div className='min-h-[85vh]'>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
