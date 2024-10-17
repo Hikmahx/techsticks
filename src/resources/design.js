@@ -15,6 +15,16 @@ const design = {
         subsection: 'Fonts',
         tags: ['fonts'],
       },
+      {
+        title: 'Realtime colors',
+        link: 'https://www.realtimecolors.com/',
+        description: 'Realtime color palette generator and visualizer for designers and developers.',
+        imageUrl: 'https://www.realtimecolors.com/preview.png',
+        dateAdded: '2024-10-17',
+        level: 'any',
+        subsection: 'Colors',
+        tags: ['colors', 'ui', 'font'],
+      }
     ],
   };
   
