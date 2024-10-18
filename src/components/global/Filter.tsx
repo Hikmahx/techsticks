@@ -23,6 +23,8 @@ import {
 } from '../ui/select';
 import { toast } from '../hooks/use-toast';
 import { Input } from '../ui/input';
+import { createFilterQueryString } from '@/lib/resources';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const FormSchema = z.object({
   sortBy: z.string().optional(),
@@ -36,10 +38,23 @@ export function FormInputs() {
     resolver: zodResolver(FormSchema),
   });
 
+  const { replace } = useRouter();
+  const pathname = usePathname();
+  const basePath = pathname.split('/')[1];
+  const section = pathname.split('/')[2];
+  const searchParams = useSearchParams();
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    const params = new URLSearchParams(searchParams.toString());
 
+    const queryString = createFilterQueryString({
+      search: data.search || '',
+      tags: data.tagFilter ? [data.tagFilter] : [],
+      sortBy: data.sortBy || 'title',
+      level: data.filterBy || '',
+    });
 
-    console.log(data)
+    replace(`/${basePath}/${section}?${queryString.toString()}`);
   }
 
   return (
@@ -90,7 +105,7 @@ export function FormInputs() {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value='title'>Title</SelectItem>
-                  <SelectItem value='Date'>date</SelectItem>
+                  <SelectItem value='date'>Date</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

@@ -1,17 +1,42 @@
 'use client';
 import { notFound } from 'next/navigation';
-import { getAllResources } from '@/resources';
-import { useEffect } from 'react';
-import Image from 'next/image';
-import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
-import { Resource } from '@/resources/type';
+import {
+  getAllResources,
+  filterResources,
+  createFilterQueryString,
+} from '@/lib/resources';
+import { useRouter } from 'next/router';
 import { ResourcesForm } from '@/components/global/Filter';
-// import { Filter } from 'lucide-react';
+import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 
-export default function ResourcePage({ params }: { params: { slug: string } }) {
-  const resources: Resource[] = getAllResources();
-  const resource = resources.find((r) => r.slug == params.slug);
+export default function ResourcePage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: {
+    search?: string;
+    tags?: string;
+    sortBy?: 'title' | 'date';
+    level?: string;
+  };
+}) {
+  const { search = '', tags = '', sortBy = 'title', level = '' } = searchParams;
 
+  // Split tags string into an array
+  const tagsArray = tags ? tags.split(',') : [];
+
+
+  // Apply filtering based on searchParams (search, tags, sortBy, level)
+  const resources = filterResources({
+    search,
+    tags: tagsArray,
+    sortBy,
+    level,
+  });
+
+  const resource = resources.find((r) => r.slug === params.slug);
+    // console.log(resources, search, tagsArray, sortBy, level);
   if (!resource) {
     notFound();
   }
