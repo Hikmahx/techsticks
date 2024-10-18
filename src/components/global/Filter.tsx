@@ -34,15 +34,24 @@ const FormSchema = z.object({
 });
 
 export function FormInputs() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  });
-
   const { replace } = useRouter();
   const pathname = usePathname();
   const basePath = pathname.split('/')[1];
   const section = pathname.split('/')[2];
   const searchParams = useSearchParams();
+
+  // Extract default values from searchParams
+  const defaultValues = {
+    search: searchParams.get('search') || '',
+    tagFilter: searchParams.get('tags') ? searchParams.get('tags').split(',')[0] : '',
+    sortBy: searchParams.get('sortBy') || 'title',
+    filterBy: searchParams.get('level') || '',
+  };
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues,
+  });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const params = new URLSearchParams(searchParams.toString());
@@ -54,7 +63,7 @@ export function FormInputs() {
       level: data.filterBy || '',
     });
 
-    replace(`/${basePath}/${section}?${queryString.toString()}`);
+    replace(`/${basePath}/${section}?${queryString}`);
   }
 
   return (
@@ -64,7 +73,6 @@ export function FormInputs() {
         className='w-max space-y-6 flex items-center justify-center'
       >
         <FormField
-          control={form.control}
           name='search'
           render={({ field }) => (
             <FormItem className='flex items-center justify-center'>
@@ -77,7 +85,6 @@ export function FormInputs() {
           )}
         />
         <FormField
-          control={form.control}
           name='tagFilter'
           render={({ field }) => (
             <FormItem className='flex items-center justify-center'>
@@ -90,7 +97,6 @@ export function FormInputs() {
           )}
         />
         <FormField
-          control={form.control}
           name='sortBy'
           render={({ field }) => (
             <FormItem className='flex items-center justify-center'>
@@ -113,7 +119,6 @@ export function FormInputs() {
           )}
         />
         <FormField
-          control={form.control}
           name='filterBy'
           render={({ field }) => (
             <FormItem className='flex items-center justify-center'>
