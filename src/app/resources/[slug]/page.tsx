@@ -7,7 +7,14 @@ import {
 } from '@/lib/resources';
 import { useRouter } from 'next/router';
 import { ResourcesForm } from '@/components/global/Filter';
-import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Bookmark } from 'lucide-react';
 
 export default function ResourcePage({
   params,
@@ -26,7 +33,6 @@ export default function ResourcePage({
   // Split tags string into an array
   const tagsArray = tags ? tags.split(',') : [];
 
-
   // Apply filtering based on searchParams (search, tags, sortBy, level)
   const resources = filterResources({
     search,
@@ -36,7 +42,7 @@ export default function ResourcePage({
   });
 
   const resource = resources.find((r) => r.slug === params.slug);
-    // console.log(resources, search, tagsArray, sortBy, level);
+  // console.log(resources, search, tagsArray, sortBy, level);
   if (!resource) {
     notFound();
   }
@@ -87,9 +93,12 @@ export default function ResourcePage({
                   )}
                 </div>
                 <CardContent className='mt-6 py-2'>
-                  <CardTitle className='text-2xl font-semibold mb-2 font-quicksand'>
-                    {item.title}
-                  </CardTitle>
+                  <CardHeader className='flex flex-row items-center justify-between px-0'>
+                    <CardTitle className='text-2xl font-semibold font-quicksand flex-1'>
+                      {item.title}
+                    </CardTitle>
+                    <Bookmark className='w-4 h-4 m-auto' />
+                  </CardHeader>
                   <p className='mb-2 text-sm'>{item.description}</p>
                   <a
                     href={item.link}
