@@ -4,7 +4,7 @@
 const community = {
   name: 'Communities',
   icon: '/resources/community',
-  list: [
+  resources: [
   {
     title: 'She Code Africa',
     link: 'https://shecodeafrica.org/',
@@ -22,3 +22,5 @@ const community = {
     ],
   },
 ]};
+
+export default community;
