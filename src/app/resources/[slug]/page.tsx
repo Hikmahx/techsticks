@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import { Resource } from '@/resources/type';
+import { ResourcesForm } from '@/components/global/Filter';
+// import { Filter } from 'lucide-react';
 
 export default function ResourcePage({ params }: { params: { slug: string } }) {
   const resources: Resource[] = getAllResources();
@@ -38,6 +40,7 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
           {resource.name}
         </h1>
       </div>
+      <ResourcesForm />
       {resource.resources && resource.resources.length > 0 ? (
         <div className='product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex items-center'>
           <div className='gap-8 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
