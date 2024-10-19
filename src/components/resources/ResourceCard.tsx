@@ -66,6 +66,7 @@ export default function ResourceCard({
         <p className='mb-2 text-sm'>{item.description}</p>
         <a
           href={item.link}
+          target='_blank'
           className='text-blue-900 text-xs font-bold hover:underline mb-2 block'
         >
           {item.link}
