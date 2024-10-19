@@ -1,23 +1,9 @@
 'use client';
 import { notFound } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import {
-  getAllResources,
-  filterResources,
-  createFilterQueryString,
-} from '@/lib/resources';
-import { useRouter } from 'next/router';
+import { filterResources } from '@/lib/resources';
 import { ResourcesForm } from '@/components/global/Filter';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Bookmark } from 'lucide-react';
 import { toast } from '@/components/hooks/use-toast';
-import Image from 'next/image';
 import ResourceItem from '@/components/resources/ResourceCard';
 
 export default function ResourcePage({
@@ -86,11 +72,13 @@ export default function ResourcePage({
       toast({
         title: 'Bookmark Added',
         description: 'The resource has been added to your bookmarks.',
+        className: 'bg-yellow-200 fixed top-4 right-4 w-fit',
       });
     } else {
       toast({
         title: 'Bookmark Removed',
         description: 'The resource has been removed from your bookmarks.',
+        className: 'bg-red-200 fixed top-4 right-4 w-fit',
       });
     }
   };
@@ -107,9 +95,11 @@ export default function ResourcePage({
       return Object.entries(groupedBySubsection).map(([subsection, items]) => (
         <div
           key={subsection}
-          className='my-12 max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex flex-col items-center'
+          className='my-16 max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex flex-col items-center'
         >
-          <h3 className='text-lg font-semibold mr-auto mb-6'>{subsection}</h3>
+          <h2 className='text-2xl lg:text-3xl font-bold mr-auto mb-6 font-quicksand relative before:absolute before:w-full before:h-1 before:bg-primary before:rounded-full before:bottom-0'>
+            {subsection}
+          </h2>
           <div className='gap-8 mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
             {items.map((item, index) => (
               <>

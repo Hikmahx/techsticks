@@ -26,7 +26,10 @@ export default function ResourceCard({
   resource,
 }: ResourceItemProps) {
   return (
-    <Card key={index} className='border pb-6 relative max-w-[18rem]'>
+    <Card
+      key={index}
+      className='border pb-6 relative max-w-[18rem] grid grid-rows-[auto_1fr_auto] h-full'
+    >
       <div className='absolute -top-8 mt-4 left-6'>
         {item.imageUrl ? (
           <div className='w-10 h-10 rounded-full bg-primary z-10 flex items-center justify-center'>
@@ -44,24 +47,22 @@ export default function ResourceCard({
           </div>
         )}
       </div>
-      <CardContent className='mt-6 py-2'>
-        <CardHeader className='flex flex-row items-center justify-between px-0'>
-          <CardTitle className='text-2xl font-semibold font-quicksand flex-1'>
-            {item.title}
-          </CardTitle>
-          <button
-            onClick={() => toggleBookmark(item.title)}
-            className='focus:outline-none'
-          >
-            <Bookmark
-              className={`w-4 h-4 m-auto ${
-                bookmarks.includes(item.title)
-                  ? 'fill-current text-blue-600'
-                  : ''
-              }`}
-            />
-          </button>
-        </CardHeader>
+      <CardHeader className='mt-6 p-6 py-3 flex flex-row items-center justify-between'>
+        <CardTitle className='text-xl font-semibold font-quicksand flex-1'>
+          {item.title}
+        </CardTitle>
+        <button
+          onClick={() => toggleBookmark(item.title)}
+          className='focus:outline-none m-auto'
+        >
+          <Bookmark
+            className={`w-4 h-4 m-auto ${
+              bookmarks.includes(item.title) ? 'fill-current text-blue-600' : ''
+            }`}
+          />
+        </button>
+      </CardHeader>
+      <CardContent className='py-2'>
         <p className='mb-2 text-sm'>{item.description}</p>
         <a
           href={item.link}
@@ -69,7 +70,7 @@ export default function ResourceCard({
         >
           {item.link}
         </a>
-        <p className='text-xs text-gray-600'>Level: {item.level}</p>
+        <p className='text-xs text-gray-600 capitalize'>Level: {item.level}</p>
         <p className='text-xs text-gray-600'>Subsection: {item.subsection}</p>
       </CardContent>
       <CardFooter className='flex items-center space-x-2 mt-4 pb-0'>

@@ -10,17 +10,20 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Bookmark } from 'lucide-react';
+import Image from 'next/image';
 
 export default function BookmarksPage() {
-  const [bookmarkedResources, setBookmarkedResources] = useState<ResourceItem[]>([]);
+  const [bookmarkedResources, setBookmarkedResources] = useState<
+    ResourceItem[]
+  >([]);
 
   useEffect(() => {
     const storedBookmarks = localStorage.getItem('bookmarks');
     if (storedBookmarks) {
       const bookmarkIds = JSON.parse(storedBookmarks);
       const allResources = getAllResources();
-      const bookmarked = allResources.flatMap(resource => 
-        resource.resources.filter(item => bookmarkIds.includes(item.title))
+      const bookmarked = allResources.flatMap((resource) =>
+        resource.resources.filter((item) => bookmarkIds.includes(item.title))
       );
       setBookmarkedResources(bookmarked);
     }
@@ -29,18 +32,18 @@ export default function BookmarksPage() {
   const toggleBookmark = (itemId: string) => {
     const storedBookmarks = localStorage.getItem('bookmarks');
     let bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
-    
+
     if (bookmarks.includes(itemId)) {
       bookmarks = bookmarks.filter((id: string) => id !== itemId);
     } else {
       bookmarks.push(itemId);
     }
-    
+
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-    
+
     const allResources = getAllResources();
-    const updatedBookmarked = allResources.flatMap(resource => 
-      resource.resources.filter(item => bookmarks.includes(item.title))
+    const updatedBookmarked = allResources.flatMap((resource) =>
+      resource.resources.filter((item) => bookmarks.includes(item.title))
     );
     setBookmarkedResources(updatedBookmarked);
   };
@@ -60,9 +63,11 @@ export default function BookmarksPage() {
                 <div className='absolute -top-8 mt-4 left-6'>
                   {item.imageUrl ? (
                     <div className='w-10 h-10 rounded-full bg-primary z-10 flex items-center justify-center'>
-                      <img
+                      <Image
                         src={item.imageUrl}
                         alt={item.title}
+                        width={36}
+                        height={36}
                         className='w-6 h-6 max-w-md m-auto'
                       />
                     </div>
@@ -77,8 +82,11 @@ export default function BookmarksPage() {
                     <CardTitle className='text-2xl font-semibold font-quicksand flex-1'>
                       {item.title}
                     </CardTitle>
-                    <button onClick={() => toggleBookmark(item.title)} className="focus:outline-none">
-                      <Bookmark className="w-4 h-4 m-auto fill-current text-blue-600" />
+                    <button
+                      onClick={() => toggleBookmark(item.title)}
+                      className='focus:outline-none'
+                    >
+                      <Bookmark className='w-4 h-4 m-auto fill-current text-blue-600' />
                     </button>
                   </CardHeader>
                   <p className='mb-2 text-sm'>{item.description}</p>
@@ -95,7 +103,10 @@ export default function BookmarksPage() {
                 </CardContent>
                 <CardFooter className='flex items-center space-x-2 mt-4 pb-0'>
                   {item.tags.map((tag) => (
-                    <span key={tag} className='bg-yellow-400/50 text-[10px] px-2 font-quicksand rounded-sm'>
+                    <span
+                      key={tag}
+                      className='bg-yellow-400/50 text-[10px] px-2 font-quicksand rounded-sm'
+                    >
                       {tag}
                     </span>
                   ))}
@@ -105,7 +116,7 @@ export default function BookmarksPage() {
           </div>
         </div>
       ) : (
-        <p className="text-center mt-8">No bookmarked resources yet.</p>
+        <p className='text-center mt-8'>No bookmarked resources yet.</p>
       )}
     </div>
   );
