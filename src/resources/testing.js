@@ -8,7 +8,8 @@ const testing = {
     {
       title: 'Cypress',
       link: 'https://www.cypress.io/',
-      description: 'Fast, easy, and reliable testing for anything that runs in a browser.',
+      description:
+        'Fast, easy, and reliable testing for anything that runs in a browser.',
       imageUrl: 'https://www.cypress.io/_astro/navbar-brand.D87396b0.svg',
       dateAdded: '2024-10-09',
       level: 'any',
@@ -17,3 +18,5 @@ const testing = {
     },
   ],
 };
+
+export default testing;

@@ -8,8 +8,10 @@ const accessibility = {
     {
       title: 'Deque University',
       link: 'https://dequeuniversity.com/',
-      description: 'Offers in-depth accessibility training and courses for developers, designers, and content creators, focusing on web and mobile accessibility.',
-      imageUrl: 'https://dequeuniversity.com/assets/images/logos/deque_university_wordmark_white.png',
+      description:
+        'Offers in-depth accessibility training and courses for developers, designers, and content creators, focusing on web and mobile accessibility.',
+      imageUrl:
+        'https://dequeuniversity.com/assets/images/logos/deque_university_wordmark_white.png',
       dateAdded: '2024-10-15',
       level: 'any',
       subsection: 'General',
@@ -17,3 +19,5 @@ const accessibility = {
     },
   ],
 };
+
+export default accessibility;
