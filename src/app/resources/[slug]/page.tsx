@@ -149,7 +149,7 @@ export default function ResourcePage({
                   </p>
                 </CardContent>
                 <CardFooter className='flex items-center space-x-2 mt-4 pb-0'>
-                  {item.tags.map(tagList)}
+                  {item.tags.map((tag) => tagList(tag))}
                 </CardFooter>
               </Card>
             ))}
