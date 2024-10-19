@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/card';
 import { Bookmark } from 'lucide-react';
 import { toast } from '@/components/hooks/use-toast';
+import Image from 'next/image';
 
 export default function ResourcePage({
   params,
@@ -108,9 +109,11 @@ export default function ResourcePage({
                 <div className='absolute -top-8 mt-4 left-6'>
                   {item.imageUrl ? (
                     <div className='w-10 h-10 rounded-full bg-primary z-10 flex items-center justify-center'>
-                      <img
+                      <Image
                         src={item.imageUrl}
                         alt={item.title}
+                        width={36}
+                        height={36}
                         className='w-6 h-6 max-w-md m-auto'
                       />
                     </div>
