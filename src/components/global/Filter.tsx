@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -8,11 +7,8 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
 } from '../ui/form';
 import {
   Select,
@@ -21,10 +17,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { toast } from '../hooks/use-toast';
 import { Input } from '../ui/input';
 import { createFilterQueryString } from '@/lib/resources';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Search, Filter } from 'lucide-react';
+
 
 const FormSchema = z.object({
   sortBy: z.string().optional(),
@@ -70,80 +67,96 @@ export function FormInputs() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='w-max space-y-6 flex items-center justify-center'
+        className='w-full mx-auto mt-8'
       >
-        <FormField
-          name='search'
-          render={({ field }) => (
-            <FormItem className='flex items-center justify-center'>
-              <FormLabel className='whitespace-nowrap sr-only'>
-                Search title
-              </FormLabel>
-              <Input placeholder='Search title....' {...field} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name='tagFilter'
-          render={({ field }) => (
-            <FormItem className='flex items-center justify-center'>
-              <FormLabel className='whitespace-nowrap sr-only'>
-                Tag filter
-              </FormLabel>
-              <Input placeholder='Filter by tag....' {...field} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name='sortBy'
-          render={({ field }) => (
-            <FormItem className='flex items-center justify-center'>
-              <FormLabel className='whitespace-nowrap sr-only'>
-                Sort By:
-              </FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+        <div className='flex flex-col md:flex-row gap-2 bg-white rounded-lg border p-2'>
+          <FormField
+            name='search'
+            render={({ field }) => (
+              <FormItem className='flex-grow'>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder='Sort By' />
-                  </SelectTrigger>
+                  <div className='relative'>
+                    <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' />
+                    <Input
+                      placeholder='Search title....'
+                      className='pl-10 pr-10 py-2 w-full'
+                      {...field}
+                    />
+                  </div>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value='title'>Title</SelectItem>
-                  <SelectItem value='date'>Date</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name='filterBy'
-          render={({ field }) => (
-            <FormItem className='flex items-center justify-center'>
-              <FormLabel className='whitespace-nowrap sr-only'>
-                Filter By:
-              </FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              </FormItem>
+            )}
+          />
+          <FormField
+            name='tagFilter'
+            render={({ field }) => (
+              <FormItem className='md:w-1/4'>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder='Filter By' />
-                  </SelectTrigger>
+                  <div className='relative'>
+                    <Filter className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' />
+                    <Input
+                      placeholder='Filter by tag...'
+                      className='pl-10 py-2 w-full'
+                      {...field}
+                    />
+                  </div>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value='any'>Any</SelectItem>
-                  <SelectItem value='beginner'>Beginner</SelectItem>
-                  <SelectItem value='intermediate'>Intermediate</SelectItem>
-                  <SelectItem value='advanced'>Advanced</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button type='submit'>Submit</Button>
+              </FormItem>
+            )}
+          />
+          <div className='flex md:w-1/4 space-x-2'>
+            <FormField
+              name='sortBy'
+              render={({ field }) => (
+                <FormItem className='flex-grow'>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Sort By' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value='title'>Title</SelectItem>
+                      <SelectItem value='date'>Date</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+            <FormField
+              name='filterBy'
+              render={({ field }) => (
+                <FormItem className='flex-grow'>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder='Filter By' />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value='any'>Any</SelectItem>
+                      <SelectItem value='beginner'>Beginner</SelectItem>
+                      <SelectItem value='intermediate'>Intermediate</SelectItem>
+                      <SelectItem value='advanced'>Advanced</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+          </div>
+          <Button
+            type='submit'
+            className='bg-blue-600 hover:bg-blue-700 text-white md:w-auto w-full'
+          >
+            Search
+          </Button>
+        </div>
       </form>
     </Form>
   );
