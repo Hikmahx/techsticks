@@ -18,6 +18,7 @@ import {
 import { Bookmark } from 'lucide-react';
 import { toast } from '@/components/hooks/use-toast';
 import Image from 'next/image';
+import ResourceItem from '@/components/resources/ResourceCard';
 
 export default function ResourcePage({
   params,
@@ -40,8 +41,9 @@ export default function ResourcePage({
     level,
   });
   const resource = resources.find((r) => r.slug === params.slug);
-  
+
   const [bookmarks, setBookmarks] = useState<string[]>([]);
+  const [showSubsection, setShowSubsection] = useState<boolean>(true);
 
   useEffect(() => {
     const storedBookmarks = localStorage.getItem('bookmarks');
@@ -74,24 +76,58 @@ export default function ResourcePage({
 
   const toggleBookmark = (itemId: string) => {
     const newBookmarks = bookmarks.includes(itemId)
-      ? bookmarks.filter(id => id !== itemId)
+      ? bookmarks.filter((id) => id !== itemId)
       : [...bookmarks, itemId];
-    
+
     setBookmarks(newBookmarks);
     localStorage.setItem('bookmarks', JSON.stringify(newBookmarks));
 
     if (newBookmarks.includes(itemId)) {
       toast({
-        title: "Bookmark Added",
-        description: "The resource has been added to your bookmarks.",
+        title: 'Bookmark Added',
+        description: 'The resource has been added to your bookmarks.',
       });
     } else {
       toast({
-        title: "Bookmark Removed",
-        description: "The resource has been removed from your bookmarks.",
+        title: 'Bookmark Removed',
+        description: 'The resource has been removed from your bookmarks.',
       });
     }
   };
+
+  const groupedBySubsection = resource.resources.reduce((acc, item) => {
+    const subsection = item.subsection || 'General';
+    if (!acc[subsection]) acc[subsection] = [];
+    acc[subsection].push(item);
+    return acc;
+  }, {} as Record<string, typeof resource.resources>);
+
+  function SubSectionView(resource: any) {
+    if (showSubsection) {
+      return Object.entries(groupedBySubsection).map(([subsection, items]) => (
+        <div
+          key={subsection}
+          className='my-12 max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex flex-col items-center'
+        >
+          <h3 className='text-lg font-semibold mr-auto mb-6'>{subsection}</h3>
+          <div className='gap-8 mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
+            {items.map((item, index) => (
+              <>
+                <ResourceItem
+                  index={index}
+                  item={item}
+                  bookmarks={bookmarks}
+                  toggleBookmark={toggleBookmark}
+                  tagList={tagList}
+                  resource={resource}
+                />
+              </>
+            ))}
+          </div>
+        </div>
+      ));
+    }
+  }
 
   return (
     <div className='container mx-auto px-4 py-4'>
@@ -100,63 +136,37 @@ export default function ResourcePage({
           {resource.name}
         </h1>
       </div>
-      <ResourcesForm />
-      {resource.resources && resource.resources.length > 0 ? (
-        <div className='product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex items-center'>
-          <div className='gap-8 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
-            {resource.resources.map((item, index) => (
-              <Card key={index} className='border pb-6 relative max-w-[18rem]'>
-                <div className='absolute -top-8 mt-4 left-6'>
-                  {item.imageUrl ? (
-                    <div className='w-10 h-10 rounded-full bg-primary z-10 flex items-center justify-center'>
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.title}
-                        width={36}
-                        height={36}
-                        className='w-6 h-6 max-w-md m-auto'
-                      />
-                    </div>
-                  ) : (
-                    <div className='w-4 h-4 rounded-full bg-primary/75'>
-                      {resource.name.charAt(0)}
-                    </div>
-                  )}
-                </div>
-                <CardContent className='mt-6 py-2'>
-                  <CardHeader className='flex flex-row items-center justify-between px-0'>
-                    <CardTitle className='text-2xl font-semibold font-quicksand flex-1'>
-                      {item.title}
-                    </CardTitle>
-                    <button onClick={() => toggleBookmark(item.title)} className="focus:outline-none">
-                      <Bookmark
-                        className={`w-4 h-4 m-auto ${
-                          bookmarks.includes(item.title) ? 'fill-current text-blue-600' : ''
-                        }`}
-                      />
-                    </button>
-                  </CardHeader>
-                  <p className='mb-2 text-sm'>{item.description}</p>
-                  <a
-                    href={item.link}
-                    className='text-blue-900 text-xs font-bold hover:underline mb-2 block'
-                  >
-                    {item.link}
-                  </a>
-                  <p className='text-xs text-gray-600'>Level: {item.level}</p>
-                  <p className='text-xs text-gray-600'>
-                    Subsection: {item.subsection}
-                  </p>
-                </CardContent>
-                <CardFooter className='flex items-center space-x-2 mt-4 pb-0'>
-                  {item.tags.map((tag) => tagList(tag))}
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+      <ResourcesForm
+        showSubsection={showSubsection}
+        setShowSubsection={setShowSubsection}
+      />
+      {showSubsection ? (
+        <div className=''>
+          <SubSectionView />
         </div>
       ) : (
-        <p>No resources available for this category.</p>
+        <div className=''>
+          {resource.resources && resource.resources.length > 0 ? (
+            <div className='max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex items-center'>
+              <div className='gap-8 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
+                {resource.resources.map((item, index) => (
+                  <>
+                    <ResourceItem
+                      index={index}
+                      item={item}
+                      bookmarks={bookmarks}
+                      toggleBookmark={toggleBookmark}
+                      tagList={tagList}
+                      resource={resource}
+                    />
+                  </>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p>No resources available for this category.</p>
+          )}
+        </div>
       )}
     </div>
   );

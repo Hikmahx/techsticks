@@ -4,12 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from '../ui/form';
+import { Form, FormControl, FormField, FormItem } from '../ui/form';
 import {
   Select,
   SelectItem,
@@ -21,7 +16,8 @@ import { Input } from '../ui/input';
 import { createFilterQueryString } from '@/lib/resources';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Search, Filter } from 'lucide-react';
-
+import { useState } from 'react';
+import { Switch } from '@/components/ui/switch'; // Import Switch component
 
 const FormSchema = z.object({
   sortBy: z.enum(['title', 'date']).optional(),
@@ -30,7 +26,13 @@ const FormSchema = z.object({
   search: z.string().optional(),
 });
 
-export function FormInputs() {
+export function FormInputs({
+  showSubsection,
+  setShowSubsection,
+}: {
+  showSubsection: boolean;
+  setShowSubsection: (value: boolean) => void;
+}) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const basePath = pathname.split('/')[1];
@@ -160,15 +162,35 @@ export function FormInputs() {
             Search
           </Button>
         </div>
+        {/* Toggle for showing subsections */}
+        <div className='mt-4 flex justify-end items-center'>
+          <label htmlFor='subsection-switch' className='mr-2'>
+            Show Subsections
+          </label>
+          <Switch
+            id='subsection-switch'
+            checked={showSubsection}
+            onCheckedChange={setShowSubsection}
+          />
+        </div>
       </form>
     </Form>
   );
 }
 
-export function ResourcesForm() {
+export function ResourcesForm({
+  showSubsection,
+  setShowSubsection,
+}: {
+  showSubsection: boolean;
+  setShowSubsection: (value: boolean) => void;
+}) {
   return (
     <div className=''>
-      <FormInputs />
+      <FormInputs
+        showSubsection={showSubsection}
+        setShowSubsection={setShowSubsection}
+      />
     </div>
   );
 }
