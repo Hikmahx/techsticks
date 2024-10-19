@@ -24,7 +24,7 @@ import { Search, Filter } from 'lucide-react';
 
 
 const FormSchema = z.object({
-  sortBy: z.string().optional(),
+  sortBy: z.enum(['title', 'date']).optional(),
   filterBy: z.string().optional(),
   tagFilter: z.string().optional(),
   search: z.string().optional(),
@@ -37,11 +37,14 @@ export function FormInputs() {
   const section = pathname.split('/')[2];
   const searchParams = useSearchParams();
 
-  // Extract default values from searchParams
   const defaultValues = {
     search: searchParams.get('search') || '',
-    tagFilter: searchParams.get('tags') ? searchParams.get('tags').split(',')[0] : '',
-    sortBy: searchParams.get('sortBy') || 'title',
+    tagFilter: searchParams.get('tags')?.split(',')[0] || '',
+    sortBy:
+      searchParams.get('sortBy') === 'title' ||
+      searchParams.get('sortBy') === 'date'
+        ? (searchParams.get('sortBy') as 'title' | 'date')
+        : 'title',
     filterBy: searchParams.get('level') || '',
   };
 
