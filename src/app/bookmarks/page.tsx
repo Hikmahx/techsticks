@@ -1,13 +1,7 @@
 'use client';
-import { notFound } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import {
-  getAllResources,
-  filterResources,
-  createFilterQueryString,
-} from '@/lib/resources';
-import { useRouter } from 'next/router';
-import { ResourcesForm } from '@/components/global/Filter';
+import { getAllResources } from '@/lib/resources';
+import { ResourceItem } from '@/lib/types';
 import {
   Card,
   CardContent,
@@ -16,94 +10,52 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Bookmark } from 'lucide-react';
-import { toast } from '@/components/hooks/use-toast';
 
-export default function ResourcePage({
-  params,
-  searchParams,
-}: {
-  params: { slug: string };
-  searchParams: {
-    search?: string;
-    tags?: string;
-    sortBy?: 'title' | 'date';
-    level?: string;
-  };
-}) {
-  const { search = '', tags = '', sortBy = 'title', level = '' } = searchParams;
-  const tagsArray = tags ? tags.split(',') : [];
-  const resources = filterResources({
-    search,
-    tags: tagsArray,
-    sortBy,
-    level,
-  });
-  const resource = resources.find((r) => r.slug === params.slug);
-  
-  const [bookmarks, setBookmarks] = useState<string[]>([]);
+export default function BookmarksPage() {
+  const [bookmarkedResources, setBookmarkedResources] = useState<ResourceItem[]>([]);
 
   useEffect(() => {
     const storedBookmarks = localStorage.getItem('bookmarks');
     if (storedBookmarks) {
-      setBookmarks(JSON.parse(storedBookmarks));
+      const bookmarkIds = JSON.parse(storedBookmarks);
+      const allResources = getAllResources();
+      const bookmarked = allResources.flatMap(resource => 
+        resource.resources.filter(item => bookmarkIds.includes(item.title))
+      );
+      setBookmarkedResources(bookmarked);
     }
   }, []);
 
-  if (!resource) {
-    notFound();
-  }
-
-  const tagClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const tools = e.currentTarget.dataset.tools;
-    console.log(`Clicked on tag: ${tools}`);
-  };
-
-  const tagList = (tag: string) => {
-    return (
-      <button
-        key={tag}
-        onClick={tagClick}
-        data-tools={tag}
-        className='bg-yellow-400/50 text-[10px] px-2 font-quicksand rounded-sm'
-      >
-        {tag}
-      </button>
-    );
-  };
-
   const toggleBookmark = (itemId: string) => {
-    const newBookmarks = bookmarks.includes(itemId)
-      ? bookmarks.filter(id => id !== itemId)
-      : [...bookmarks, itemId];
+    const storedBookmarks = localStorage.getItem('bookmarks');
+    let bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
     
-    setBookmarks(newBookmarks);
-    localStorage.setItem('bookmarks', JSON.stringify(newBookmarks));
-
-    if (newBookmarks.includes(itemId)) {
-      toast({
-        title: "Bookmark Added",
-        description: "The resource has been added to your bookmarks.",
-      });
+    if (bookmarks.includes(itemId)) {
+      bookmarks = bookmarks.filter((id: string) => id !== itemId);
     } else {
-      toast({
-        title: "Bookmark Removed",
-        description: "The resource has been removed from your bookmarks.",
-      });
+      bookmarks.push(itemId);
     }
+    
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    
+    const allResources = getAllResources();
+    const updatedBookmarked = allResources.flatMap(resource => 
+      resource.resources.filter(item => bookmarks.includes(item.title))
+    );
+    setBookmarkedResources(updatedBookmarked);
   };
 
   return (
     <div className='container mx-auto px-4 py-4'>
       <div className='bg-blue-700 lg:m-4 lg:mx-auto rounded-3xl h-32 flex m-auto items-center justify-center'>
         <h1 className='text-4xl lg:text-6xl font-bold font-quicksand tracking-wider leading-10 text-white text-center'>
-          {resource.name}
+          Bookmarks
         </h1>
       </div>
-      <ResourcesForm />
-      {resource.resources && resource.resources.length > 0 ? (
+      {bookmarkedResources.length > 0 ? (
         <div className='product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex items-center'>
           <div className='gap-8 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
-            {resource.resources.map((item, index) => (
+            {bookmarkedResources.map((item, index) => (
               <Card key={index} className='border pb-6 relative max-w-[18rem]'>
                 <div className='absolute -top-8 mt-4 left-6'>
                   {item.imageUrl ? (
@@ -116,7 +68,7 @@ export default function ResourcePage({
                     </div>
                   ) : (
                     <div className='w-4 h-4 rounded-full bg-primary/75'>
-                      {resource.name.charAt(0)}
+                      {item.title.charAt(0)}
                     </div>
                   )}
                 </div>
@@ -126,11 +78,7 @@ export default function ResourcePage({
                       {item.title}
                     </CardTitle>
                     <button onClick={() => toggleBookmark(item.title)} className="focus:outline-none">
-                      <Bookmark
-                        className={`w-4 h-4 m-auto ${
-                          bookmarks.includes(item.title) ? 'fill-current text-blue-600' : ''
-                        }`}
-                      />
+                      <Bookmark className="w-4 h-4 m-auto fill-current text-blue-600" />
                     </button>
                   </CardHeader>
                   <p className='mb-2 text-sm'>{item.description}</p>
@@ -146,14 +94,18 @@ export default function ResourcePage({
                   </p>
                 </CardContent>
                 <CardFooter className='flex items-center space-x-2 mt-4 pb-0'>
-                  {item.tags.map(tagList)}
+                  {item.tags.map((tag) => (
+                    <span key={tag} className='bg-yellow-400/50 text-[10px] px-2 font-quicksand rounded-sm'>
+                      {tag}
+                    </span>
+                  ))}
                 </CardFooter>
               </Card>
             ))}
           </div>
         </div>
       ) : (
-        <p>No resources available for this category.</p>
+        <p className="text-center mt-8">No bookmarked resources yet.</p>
       )}
     </div>
   );
