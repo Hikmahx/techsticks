@@ -16,8 +16,8 @@ import { Input } from '../ui/input';
 import { createFilterQueryString } from '@/lib/resources';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Search, Filter } from 'lucide-react';
-import { useState } from 'react';
-import { Switch } from '@/components/ui/switch'; // Import Switch component
+import { Switch } from '@/components/ui/switch';
+import { TagManager } from './TagManager';
 
 const FormSchema = z.object({
   sortBy: z.enum(['title', 'date']).optional(),
@@ -29,19 +29,19 @@ const FormSchema = z.object({
 export function FormInputs({
   showSubsection,
   setShowSubsection,
+  isBookmarksPage = false,
 }: {
-  showSubsection: boolean;
-  setShowSubsection: (value: boolean) => void;
+  showSubsection?: boolean;
+  setShowSubsection?: (value: boolean) => void;
+  isBookmarksPage?: boolean;
 }) {
   const { replace } = useRouter();
   const pathname = usePathname();
-  const basePath = pathname.split('/')[1];
-  const section = pathname.split('/')[2];
   const searchParams = useSearchParams();
 
   const defaultValues = {
     search: searchParams.get('search') || '',
-    tagFilter: searchParams.get('tags')?.split(',')[0] || '',
+    tagFilter: '',
     sortBy:
       searchParams.get('sortBy') === 'title' ||
       searchParams.get('sortBy') === 'date'
@@ -55,18 +55,50 @@ export function FormInputs({
     defaultValues,
   });
 
+  const tags = Array.from(new Set(searchParams.get('tags')?.split(',') || []));
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    const params = new URLSearchParams(searchParams.toString());
+    const currentTags = new Set(searchParams.get('tags')?.split(',') || []);
+    if (data.tagFilter) {
+      currentTags.add(data.tagFilter);
+    }
+    const newTags = Array.from(currentTags);
 
     const queryString = createFilterQueryString({
       search: data.search || '',
-      tags: data.tagFilter ? [data.tagFilter] : [],
+      tags: newTags,
       sortBy: data.sortBy || 'title',
       level: data.filterBy || '',
     });
 
-    replace(`/${basePath}/${section}?${queryString}`);
+    replace(`${pathname}?${queryString}`);
   }
+
+  const removeTag = (tagToRemove: string) => {
+    const currentTags = new Set(searchParams.get('tags')?.split(',') || []);
+    currentTags.delete(tagToRemove);
+    const newTags = Array.from(currentTags);
+
+    const queryString = createFilterQueryString({
+      search: searchParams.get('search') || '',
+      tags: newTags,
+      sortBy: searchParams.get('sortBy') as 'title' | 'date' || 'title',
+      level: searchParams.get('level') || '',
+    });
+
+    replace(`${pathname}?${queryString}`);
+  };
+
+  const clearAllTags = () => {
+    const queryString = createFilterQueryString({
+      search: searchParams.get('search') || '',
+      tags: [],
+      sortBy: searchParams.get('sortBy') as 'title' | 'date' || 'title',
+      level: searchParams.get('level') || '',
+    });
+
+    replace(`${pathname}?${queryString}`);
+  };
 
   return (
     <Form {...form}>
@@ -100,7 +132,7 @@ export function FormInputs({
                   <div className='relative'>
                     <Filter className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' />
                     <Input
-                      placeholder='Filter by tag...'
+                      placeholder='Add a tag...'
                       className='pl-10 py-2 w-full'
                       {...field}
                     />
@@ -162,18 +194,20 @@ export function FormInputs({
             Search
           </Button>
         </div>
-        {/* Toggle for showing subsections */}
-        <div className='mt-4 flex justify-end items-center'>
-          <label htmlFor='subsection-switch' className='mr-2'>
-            Show Subsections
-          </label>
-          <Switch
-            id='subsection-switch'
-            checked={showSubsection}
-            onCheckedChange={setShowSubsection}
-          />
-        </div>
+        {!isBookmarksPage && (
+          <div className='mt-4 flex justify-end items-center'>
+            <label htmlFor='subsection-switch' className='mr-2'>
+              Show Subsections
+            </label>
+            <Switch
+              id='subsection-switch'
+              checked={showSubsection}
+              onCheckedChange={setShowSubsection}
+            />
+          </div>
+        )}
       </form>
+      <TagManager tags={tags} onRemoveTag={removeTag} onClearTags={clearAllTags} />
     </Form>
   );
 }
@@ -181,15 +215,18 @@ export function FormInputs({
 export function ResourcesForm({
   showSubsection,
   setShowSubsection,
+  isBookmarksPage = false,
 }: {
-  showSubsection: boolean;
-  setShowSubsection: (value: boolean) => void;
+  showSubsection?: boolean;
+  setShowSubsection?: (value: boolean) => void;
+  isBookmarksPage?: boolean;
 }) {
   return (
     <div className=''>
       <FormInputs
         showSubsection={showSubsection}
         setShowSubsection={setShowSubsection}
+        isBookmarksPage={isBookmarksPage}
       />
     </div>
   );
