@@ -48,7 +48,7 @@ export function ResourceList({ resources, bookmarks, toggleBookmark, tagList, re
     );
   } else {
     return (
-      <div className='max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex items-center'>
+      <div className='max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 flex items-center justify-center'>
         <div className='gap-8 mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-wrap items-center justify-center'>
           {resources.map((item, index) => (
             <ResourceCard
