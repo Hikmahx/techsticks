@@ -42,8 +42,8 @@ export default function ResourceCard({
             />
           </div>
         ) : (
-          <div className='w-4 h-4 rounded-full bg-primary/75'>
-            {resource.name.charAt(0)}
+          <div className='w-10 h-10 rounded-full bg-primary/35'>
+            <span className='sr-only'>{resource.name.charAt(0)}</span>
           </div>
         )}
       </div>

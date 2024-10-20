@@ -46,7 +46,7 @@ export default function ResourcePage({
 
   return (
     <div className='container mx-auto px-4 py-4'>
-      <div className='bg-blue-700 lg:m-4 lg:mx-auto rounded-3xl h-32 flex m-auto items-center justify-center'>
+      <div className='bg-primary lg:m-4 lg:mx-auto rounded-3xl h-32 flex m-auto items-center justify-center'>
         <h1 className='text-4xl lg:text-6xl font-bold font-quicksand tracking-wider leading-10 text-white text-center'>
           {resource.name}
         </h1>
