@@ -86,7 +86,7 @@ Here's how you can contribute:
   title: "",            // Title of the resource
   link: "",             // URL to the resource
   description: "",      // Brief description of what the resource offers 
-  imageUrl: "",         // A main image from the website (optional)
+  imageUrl: "",         // A favicon/logo link from the website (optional)
   dateAdded: "",        // Date when the resource was added (date string)
   level: "",            // Difficulty level ('any', 'beginner', 'intermediate', 'advanced')
   subsection: "",       // Subsection: Specific to each file (check file for available subsections)
