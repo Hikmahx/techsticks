@@ -15,7 +15,7 @@ import {
 import { Input } from '../ui/input';
 import { createFilterQueryString } from '@/lib/resources';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, X } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { TagManager } from './TagManager';
 
@@ -57,6 +57,8 @@ export function FormInputs({
 
   const tags = Array.from(new Set(searchParams.get('tags')?.split(',') || []));
 
+  const hasActiveQuery = searchParams.toString() !== '';
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const currentTags = new Set(searchParams.get('tags')?.split(',') || []);
     if (data.tagFilter) {
@@ -72,7 +74,19 @@ export function FormInputs({
     });
 
     replace(`${pathname}?${queryString}`);
+    
+    form.setValue('tagFilter', '');
   }
+
+  const clearAllFilters = () => {
+    replace(pathname);
+    form.reset({
+      search: '',
+      tagFilter: '',
+      sortBy: 'title',
+      filterBy: '',
+    });
+  };
 
   const removeTag = (tagToRemove: string) => {
     const currentTags = new Set(searchParams.get('tags')?.split(',') || []);
@@ -191,8 +205,19 @@ export function FormInputs({
             type='submit'
             className='bg-blue-600 hover:bg-blue-700 text-white md:w-auto w-full'
           >
+            <Search className="w-4 h-4 mr-2" />
             Search
           </Button>
+          {hasActiveQuery && (
+            <Button
+              type='button'
+              onClick={clearAllFilters}
+              className='bg-red-400 hover:bg-red-700 text-white md:w-auto w-full'
+            >
+              <X className="w-4 h-4 mr-2" />
+              Clear Filter
+            </Button>
+          )}
         </div>
         {!isBookmarksPage && (
           <div className='mt-4 flex justify-end items-center'>
