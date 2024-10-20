@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
+import { getAllResources } from '@/lib/resources';
 
 export function HeroSection() {
   return (
@@ -117,48 +118,14 @@ export function WhyTechSticks() {
 }
 
 type ResourceItem = {
-  id: string;
   name: string;
   icon: string;
-  resourceCount: number;
+  slug: string;
+  resources: any[];
 };
 
-const resourceItems: ResourceItem[] = [
-  { id: 'ai', name: 'AI', icon: '/resources/ai.svg', resourceCount: 12 },
-  {
-    id: 'web-development',
-    name: 'Web Development',
-    icon: '/resources/web-development.svg',
-    resourceCount: 17,
-  },
-  {
-    id: 'accessibility',
-    name: 'Accessibility',
-    icon: '/resources/accessibility.svg',
-    resourceCount: 6,
-  },
-  {
-    id: 'testing',
-    name: 'Testing',
-    icon: '/resources/testing.svg',
-    resourceCount: 17,
-  },
-  {
-    id: 'community',
-    name: 'Community',
-    icon: '/resources/community.svg',
-    resourceCount: 17,
-  },
-  {
-    id: 'design',
-    name: 'Design',
-    icon: '/resources/design.svg',
-    resourceCount: 17,
-  },
-];
-
 const ResourceCard = ({ resource }: { resource: ResourceItem }) => (
-  <Link href={`/resources/${resource.id}`} className='block'>
+  <Link href={`/resources/${resource.slug}`} className='block'>
     <Card className='overflow-hidden transition-all hover:shadow-lg bg-primary/20 hover:bg-primary/30 fill-red-50 hover:stroke-yellow-30 border-none'>
       <CardContent className='p-6'>
         <div className='flex flex-col items-center text-center'>
@@ -171,7 +138,7 @@ const ResourceCard = ({ resource }: { resource: ResourceItem }) => (
           />
           <h3 className='text-lg font-semibold mb-2'>{resource.name}</h3>
           <p className='text-sm text-muted-foreground'>
-            {resource.resourceCount} Resources
+            {resource.resources.length} Resources
           </p>
         </div>
       </CardContent>
@@ -180,6 +147,8 @@ const ResourceCard = ({ resource }: { resource: ResourceItem }) => (
 );
 
 export function AvailableResources() {
+  const resourceItems: ResourceItem[] = getAllResources()
+
   return (
     <div className='bg-gray-50'>
       <section className='container mx-auto px-4 py-12'>
@@ -197,8 +166,8 @@ export function AvailableResources() {
           </Link>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-          {resourceItems.map((item) => (
-            <ResourceCard key={item.id} resource={item} />
+          {resourceItems.slice(0,6).map((item) => (
+            <ResourceCard key={item.slug} resource={item} />
           ))}
         </div>
       </section>
