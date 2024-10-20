@@ -3,7 +3,7 @@
 
 const accessibility = {
   name: 'Accessibility',
-  icon: '/resources/accessibility',
+  icon: '/resources/accessibility.svg',
   resources: [
     {
       title: 'Deque University',
@@ -16,6 +16,16 @@ const accessibility = {
       level: 'any',
       subsection: 'General',
       tags: ['wcag', 'inclusive design'],
+    },
+    {
+      title: 'ARIA Authoring Practices',
+      link: 'https://www.w3.org/WAI/ARIA/apg/',
+      description: 'Guidelines for using ARIA (Accessible Rich Internet Applications) to enhance accessibility.',
+      imageUrl: 'https://www.w3.org/WAI/favicon.ico',
+      dateAdded: '2024-10-11',
+      level: 'any',
+      subsection: 'Assistive Technologies',
+      tags: ['aria', 'a11y'],
     },
   ],
 };

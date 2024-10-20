@@ -3,7 +3,7 @@
 
 const blog = {
   name: 'Blogs',
-  icon: '/resources/blog',
+  icon: '/resources/blog.svg',
   resources: [
     {
       title: 'CSS Tricks',

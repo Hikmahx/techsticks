@@ -3,7 +3,7 @@
 
 const community = {
   name: 'Communities',
-  icon: '/resources/community',
+  icon: '/resources/community.svg',
   resources: [
   {
     title: 'She Code Africa',
