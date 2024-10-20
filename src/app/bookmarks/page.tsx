@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { filterResources, getAllResources } from '@/lib/resources';
 import { ResourceItem } from '@/lib/types';
 import { ResourcesForm } from '@/components/global/Filter';
@@ -52,23 +52,25 @@ export default function BookmarksPage({
           Bookmarks
         </h1>
       </div>
+      <Suspense fallback={<p>Loading bookmarks...</p>}>
       <ResourcesForm isBookmarksPage={true} />
-      {filteredBookmarks[0].resources.length > 0 ? (
-        <ResourceList
-          resources={filteredBookmarks[0].resources}
-          bookmarks={bookmarks}
-          toggleBookmark={toggleBookmark}
-          tagList={tagList}
-          resource={{
-            name: 'Bookmarks',
-            resources: filteredBookmarks[0].resources,
-            slug: 'bookmarks',
-          }}
-          showSubsection={false}
-        />
-      ) : (
-        <p className='text-center mt-8'>No bookmarked resources yet.</p>
-      )}
+        {filteredBookmarks.length > 0 ? (
+          <ResourceList
+            resources={filteredBookmarks[0].resources}
+            bookmarks={bookmarks}
+            toggleBookmark={toggleBookmark}
+            tagList={tagList}
+            resource={{
+              name: 'Bookmarks',
+              resources: filteredBookmarks[0].resources,
+              slug: 'bookmarks',
+            }}
+            showSubsection={false}
+          />
+        ) : (
+          <p className='text-center mt-8'>No bookmarked resources yet.</p>
+        )}
+      </Suspense>
     </div>
   );
 }
