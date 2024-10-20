@@ -27,13 +27,19 @@ export default function ResourcePage({
     notFound();
   }
 
-  const filteredResources = filterResources({
-    search,
-    tags: tagsArray,
-    sortBy,
-    level,
-  });
-  const filteredResource = filteredResources.find((r) => r.slug === params.slug);
+  const filteredResources = filterResources(
+    {
+      search,
+      tags: tagsArray,
+      sortBy,
+      level,
+    },
+    [resource]
+  );
+
+  const filteredResource = filteredResources.find(
+    (r) => r.slug === params.slug
+  );
 
   const [showSubsection, setShowSubsection] = useState<boolean>(true);
   const { bookmarks, toggleBookmark, tagList } = useResourceManagement();
@@ -59,9 +65,11 @@ export default function ResourcePage({
           showSubsection={showSubsection}
         />
       ) : (
-        <div className="text-center mt-8 p-4">
-          <p className="text-lg font-semibold text-gray-900">No resources found</p>
-          <p className="text-gray-600">Try adjusting your filter criteria</p>
+        <div className='text-center mt-8 p-4'>
+          <p className='text-lg font-semibold text-gray-900'>
+            No resources found
+          </p>
+          <p className='text-gray-600'>Try adjusting your filter criteria</p>
         </div>
       )}
     </div>

@@ -74,7 +74,7 @@ export default function ResourceCard({
         <p className='text-xs text-gray-600 capitalize'>Level: {item.level}</p>
         <p className='text-xs text-gray-600'>Subsection: {item.subsection}</p>
       </CardContent>
-      <CardFooter className='flex items-center space-x-2 mt-4 pb-0'>
+      <CardFooter className='flex flex-wrap items-center gap-2 mt-4 pb-0'>
         {item.tags.map((tag) => tagList(tag))}
       </CardFooter>
     </Card>

@@ -29,20 +29,22 @@ export function getAllResources() {
 }
 
 // Filter resources based on search, tags, sortBy, and level
-export function filterResources({
-  search = '',
-  tags = [],
-  sortBy = 'title',
-  level = '',
-}: {
-  search?: string;
-  tags?: string[];
-  sortBy?: 'title' | 'date';
-  level?: string;
-}) {
-  let filteredResources = getAllResources();
+export function filterResources(
+  {
+    search = '',
+    tags = [],
+    sortBy = 'title',
+    level = '',
+  }: {
+    search?: string;
+    tags?: string[];
+    sortBy?: 'title' | 'date';
+    level?: string;
+  },
+  resourcesList: Resource[] = getAllResources()
+) {
+  let filteredResources = resourcesList;
 
-  // Search filter
   if (search) {
     filteredResources = filteredResources
       .map((section) => ({
@@ -56,6 +58,7 @@ export function filterResources({
 
   // Tags filter (resources should have all tags in the list)
   if (tags.length > 0) {
+    console.log('>');
     filteredResources = filteredResources
       .map((section) => ({
         ...section,

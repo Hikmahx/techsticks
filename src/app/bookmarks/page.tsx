@@ -1,24 +1,49 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { getAllResources } from '@/lib/resources';
+import { filterResources, getAllResources } from '@/lib/resources';
 import { ResourceItem } from '@/lib/types';
 import { ResourcesForm } from '@/components/global/Filter';
 import { useResourceManagement } from '@/components/hooks/useResourceManagement';
 import { ResourceList } from '@/components/resources/ResourcesList';
 
-
-
-export default function BookmarksPage() {
-  const [bookmarkedResources, setBookmarkedResources] = useState<ResourceItem[]>([]);
+export default function BookmarksPage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: {
+    search?: string;
+    tags?: string;
+    sortBy?: 'title' | 'date';
+    level?: string;
+  };
+}) {
+  const [bookmarkedResources, setBookmarkedResources] = useState<
+    ResourceItem[]
+  >([]);
   const { bookmarks, toggleBookmark, tagList } = useResourceManagement();
 
   useEffect(() => {
     const allResources = getAllResources();
-    const bookmarked = allResources.flatMap(resource => 
-      resource.resources.filter(item => bookmarks.includes(item.title))
+    const bookmarked = allResources.flatMap((resource) =>
+      resource.resources.filter((item) => bookmarks.includes(item.title))
     );
     setBookmarkedResources(bookmarked);
   }, [bookmarks]);
+
+  const { search = '', tags = '', sortBy = 'title', level = '' } = searchParams;
+  const tagsArray = tags ? tags.split(',') : [];
+  const allResources = getAllResources();
+
+  const filteredBookmarks = filterResources(
+    {
+      search,
+      tags: tagsArray,
+      sortBy,
+      level,
+    },
+    [{ name: 'Bookmarks', resources: bookmarkedResources, slug: 'bookmarks' }] // Pass the current section to be filtered
+  );
 
   return (
     <div className='container mx-auto px-4 py-4'>
@@ -28,17 +53,21 @@ export default function BookmarksPage() {
         </h1>
       </div>
       <ResourcesForm isBookmarksPage={true} />
-      {bookmarkedResources.length > 0 ? (
+      {filteredBookmarks[0].resources.length > 0 ? (
         <ResourceList
-          resources={bookmarkedResources}
+          resources={filteredBookmarks[0].resources}
           bookmarks={bookmarks}
           toggleBookmark={toggleBookmark}
           tagList={tagList}
-          resource={{ name: 'Bookmarks', resources: bookmarkedResources, slug: 'bookmarks' }}
+          resource={{
+            name: 'Bookmarks',
+            resources: filteredBookmarks[0].resources,
+            slug: 'bookmarks',
+          }}
           showSubsection={false}
         />
       ) : (
-        <p className="text-center mt-8">No bookmarked resources yet.</p>
+        <p className='text-center mt-8'>No bookmarked resources yet.</p>
       )}
     </div>
   );
