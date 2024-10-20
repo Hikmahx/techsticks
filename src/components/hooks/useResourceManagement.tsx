@@ -41,11 +41,7 @@ export function useResourceManagement() {
     const tag = e.currentTarget.dataset.tools;
     if (tag) {
       const currentTags = new Set(searchParams.get('tags')?.split(',') || []);
-      if (currentTags.has(tag)) {
-        currentTags.delete(tag);
-      } else {
-        currentTags.add(tag);
-      }
+      currentTags.add(tag);
       const newTags = Array.from(currentTags);
       const newSearchParams = new URLSearchParams(searchParams.toString());
       newSearchParams.set('tags', newTags.join(','));
