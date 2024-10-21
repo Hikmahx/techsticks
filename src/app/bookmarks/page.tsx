@@ -7,7 +7,6 @@ import { useResourceManagement } from '@/components/hooks/useResourceManagement'
 import { ResourceList } from '@/components/resources/ResourcesList';
 
 export default function BookmarksPage({
-  params,
   searchParams,
 }: {
   params: { slug: string };
@@ -33,7 +32,6 @@ export default function BookmarksPage({
 
   const { search = '', tags = '', sortBy = 'title', level = '' } = searchParams;
   const tagsArray = tags ? tags.split(',') : [];
-  const allResources = getAllResources();
 
   const filteredBookmarks = filterResources(
     {
@@ -44,7 +42,7 @@ export default function BookmarksPage({
     },
     [
       {
-        name: 'Bookmarks',
+        name: 'bookmarks',
         resources: bookmarkedResources,
         slug: 'bookmarks',
       },
@@ -74,7 +72,7 @@ export default function BookmarksPage({
             showSubsection={false}
           />
         ) : (
-          <p className='text-center mt-8'>No bookmarked resources yet.</p>
+          <p className='text-center mt-8'>No bookmarked resources yet. </p>
         )}
       </Suspense>
     </div>
