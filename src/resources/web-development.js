@@ -1,5 +1,5 @@
 // Available subsection list for Web Development.js: ['Front-End', 'Back-End', 'Full-Stack']
-// Available tags list for Web Development.js: ['html', 'css', 'javascript', 'framework', 'nodejs', 'database', 'python', 'ruby']
+// Available tags list for Web Development.js: ['html', 'css', 'javascript', 'framework', 'nodejs', 'database', 'python', 'ruby', 'git']
 
 const webDevelopment = {
   name: 'Web Development',
@@ -181,7 +181,7 @@ const webDevelopment = {
       dateAdded: '2024-10-27',
       level: 'any',
       subsection: 'General',
-      tags: ['html', 'css', 'javascript'],
+      tags: ['git'],
     },
   ],
 };
