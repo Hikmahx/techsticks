@@ -42,7 +42,13 @@ export default function BookmarksPage({
       sortBy,
       level,
     },
-    [{ name: 'Bookmarks', resources: bookmarkedResources, slug: 'bookmarks' }] // Pass the current section to be filtered
+    [
+      {
+        name: 'Bookmarks',
+        resources: bookmarkedResources,
+        slug: 'bookmarks',
+      },
+    ]
   );
 
   return (

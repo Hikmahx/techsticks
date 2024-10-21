@@ -53,7 +53,7 @@ export function filterResources(
           resource.title.toLowerCase().includes(search.toLowerCase())
         ),
       }))
-      .filter((section) => section.resources.length > 0);
+      .filter((section) => section.resources.length > 0); 
   }
 
   // Tags filter (resources should have all tags in the list)
