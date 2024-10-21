@@ -58,7 +58,6 @@ export function filterResources(
 
   // Tags filter (resources should have all tags in the list)
   if (tags.length > 0) {
-    console.log('>');
     filteredResources = filteredResources
       .map((section) => ({
         ...section,
