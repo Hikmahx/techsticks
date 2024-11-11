@@ -25,6 +25,16 @@ const ai = {
       subsection: 'General',
       tags: ['tools', 'code'],
     },
+    {
+      title: 'Perplexity AI',
+      link: 'https://www.perplexity.ai',
+      description: 'A free AI-powered answer engine that provides accurate, trusted, and real-time answers to any question.',
+      imageUrl: 'https://framerusercontent.com/images/TPDRRsckgte6GnPC4QZSWbDvA.svg', 
+      dateAdded: '2024-11-11',
+      level: 'any',
+      subsection: 'General',
+      tags: ['tools', 'research'],
+    },
   ],
 };
 
