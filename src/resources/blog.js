@@ -16,6 +16,17 @@ const blog = {
       subsection: 'Design',
       tags: ['design', 'programming', 'tutorials'],
     },
+    {
+      title: 'Smashing Magazine',
+      link: 'https://www.smashingmagazine.com/',
+      description:
+        'An online magazine for web designers and developers for useful and innovative information.',
+      imageUrl: 'https://www.smashingmagazine.com/favicon.ico',
+      dateAdded: '2024-11-22',
+      level: 'any',
+      subsection: 'Design',
+      tags: ['design', 'programming', 'guides', 'tutorials'],
+    },
   ],
 };
 
