@@ -1,5 +1,5 @@
 // Available subsection list for Design.js: ['Fonts', 'Colors', 'Icons', 'UI/UX']
-// Available tags list for Design.js: ['font', 'colors', 'ui', 'ux', 'wireframe', ]
+// Available tags list for Design.js: ['font', 'colors', 'ui', 'ux', 'wireframe', 'icons']
 
 const design = {
   name: 'Design',
@@ -59,6 +59,16 @@ const design = {
       level: 'any',
       subsection: 'General',
       tags: ['photos'],
+    },
+    {
+      title: 'React Icons',
+      link: 'https://react-icons.github.io/react-icons/',
+      description: 'Popular icon library providing a wide range of icon sets for React applications.',
+      imageUrl: 'https://react-icons.github.io/react-icons/favicon.ico',
+      dateAdded: '2024-10-29',
+      level: 'any',
+      subsection: 'Icons',
+      tags: ['icons', 'ui', 'react'],
     },
   ],
 };
