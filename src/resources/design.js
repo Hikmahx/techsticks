@@ -70,6 +70,16 @@ const design = {
       subsection: 'Icons',
       tags: ['icons', 'ui', 'react'],
     },
+    {
+      title: 'UI Design Daily',
+      link: 'https://www.uidesigndaily.com/',
+      description: 'Free UI resources updated daily with designs in Figma, Sketch, and Adobe XD formats.',
+      imageUrl: 'https://cdn.prod.website-files.com/572cc412e8e48c8223fa0e57/6596b5ee2b5c3b8bbcbf53a6_UIDD-favicon.png',
+      dateAdded: '2024-12-06',
+      level: 'any',
+      subsection: 'UI/UX',
+      tags: ['ui', 'wireframe'],
+    }
   ],
 };
 
