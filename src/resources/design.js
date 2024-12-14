@@ -79,6 +79,16 @@ const design = {
       level: 'any',
       subsection: 'UI/UX',
       tags: ['ui', 'wireframe'],
+    },
+    {
+      title: 'SVG Repo',
+      link: 'https://www.svgrepo.com/',
+      description: 'Large collection of free, customizable SVG icons and vectors for use in any projects.',
+      imageUrl: 'https://www.svgrepo.com/logo.svg',
+      dateAdded: '2024-12-15',
+      level: 'any',
+      subsection: 'Icons',
+      tags: ['icons', 'ui'],
     }
   ],
 };
