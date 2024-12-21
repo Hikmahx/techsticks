@@ -1,5 +1,5 @@
 // Available subsection list for Accessibility.js: ['General', 'Web', 'Mobile', 'Screen Readers', 'Tools', 'Guides']
-// Available tags list for Accessibility.js: ['wcag', 'inclusive design', 'color contrast']
+// Available tags list for Accessibility.js: ['wcag', 'inclusive design', 'color contrast', aria, a11y]
 
 const accessibility = {
   name: 'Accessibility',
@@ -26,6 +26,16 @@ const accessibility = {
       level: 'any',
       subsection: 'Assistive Technologies',
       tags: ['aria', 'a11y'],
+    },
+    {
+      title: 'WAVE Web Accessibility Evaluation Tool',
+      link: 'https://wave.webaim.org/',
+      description: 'A suite of evaluation tools that helps authors make their web content more accessible to individuals with disabilities.',
+      imageUrl: 'https://wave.webaim.org/favicon.ico',
+      dateAdded: '2024-10-21',
+      level: 'any',
+      subsection: 'Tools',
+      tags: ['wcag', 'color contrast'],
     },
   ],
 };
