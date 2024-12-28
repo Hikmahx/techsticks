@@ -89,7 +89,18 @@ const design = {
       level: 'any',
       subsection: 'Icons',
       tags: ['icons', 'ui'],
-    }
+    },
+    {
+      title: 'Humaans',
+      link: 'https://www.humaaans.com/',
+      description:
+        'A library of customizable illustrations of people with mix-and-match components.',
+      imageUrl: 'https://cdn.prod.website-files.com/5bff8886c3964a992e90d465/5c00a0ccd86e9656ff7c748a_favicon-32.png',
+      dateAdded: '2024-12-28',
+      level: 'any',
+      subsection: 'Icons',
+      tags: [ 'ui', 'icons'],
+    },
   ],
 };
 
