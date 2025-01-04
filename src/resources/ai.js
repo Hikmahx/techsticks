@@ -35,6 +35,16 @@ const ai = {
       subsection: 'General',
       tags: ['tools', 'research'],
     },
+    {
+      title: 'Grammarly',
+      link: 'https://www.grammarly.com/',
+      description: 'An AI-powered writing assistant that helps improve grammar, spelling, punctuation, and style in real-time.',
+      imageUrl: 'https://static-web.grammarly.com/cms/master/public/favicon.ico',
+      dateAdded: '2025-01-04',
+      level: 'any',
+      subsection: 'General',
+      tags: ['tools', 'models'],
+    },
   ],
 };
 
