@@ -70,6 +70,17 @@ const testing = {
       subsection: 'End-to-End Testing',
       tags: ['javascript'],
     },
+    {
+      title: 'Selenium',
+      link: 'https://www.selenium.dev/',
+      description:
+        'Powerful tool for controlling web browsers through programs and performing browser automation.',
+      imageUrl: 'https://www.selenium.dev/images/selenium_logo_square_green.png',
+      dateAdded: '2025-01-18',
+      level: 'intermediate',
+      subsection: 'End-to-End Testing',
+      tags: ['e2e testing', 'automation', 'testing tools'],
+    },
   ],
 };
 
