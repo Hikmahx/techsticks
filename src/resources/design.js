@@ -89,7 +89,18 @@ const design = {
       level: 'any',
       subsection: 'Icons',
       tags: ['icons', 'ui'],
-    }
+    },
+    {
+      title: 'Ionic Icons',
+      link: 'https://ionic.io/ionicons',
+      description:
+        'Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font.',
+      imageUrl: 'https://ionic.io/ionicons/assets/img/meta/favicon-32x32.png',
+      dateAdded: '2025-01-25',
+      level: 'any',
+      subsection: 'Icons',
+      tags: ['icons', 'ui'],
+    },
   ],
 };
 
