@@ -45,6 +45,16 @@ const ai = {
       subsection: 'General',
       tags: ['tools', 'models'],
     },
+    {
+      title: 'DeepSeek',
+      link: 'https://chat.deepseek.com',
+      description: 'Advanced AI models specializing in complex reasoning tasks for science, coding, and mathematics.',
+      imageUrl: 'https://chat.deepseek.com/favicon.svg',
+      dateAdded: '2025-02-01',
+      level: 'any',
+      subsection: 'General',
+      tags: ['models', 'tools', 'research'],
+    },
   ],
 };
 
