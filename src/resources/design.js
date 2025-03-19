@@ -1,4 +1,4 @@
-// Available subsection list for Design.js: ['Fonts', 'Colors', 'Icons', 'UI/UX']
+// Available subsection list for Design.js: ['Fonts', 'Colors', 'Icons', 'UI/UX', 'Animations']
 // Available tags list for Design.js: ['font', 'colors', 'ui', 'ux', 'wireframe', 'icons']
 
 const design = {
@@ -100,6 +100,16 @@ const design = {
       level: 'any',
       subsection: 'Icons',
       tags: ['icons', 'ui'],
+    },
+    {
+      title: 'Anime.js',
+      link: 'https://animejs.com/',
+      description: 'A lightweight JavaScript animation library with a simple, yet powerful API for creating smooth animations.',
+      imageUrl: 'https://animejs.com/documentation/assets/img/favicon.png',
+      dateAdded: '2025-03-19',
+      level: 'any',
+      subsection: 'Animations',
+      tags: ['ui'],
     },
   ],
 };
