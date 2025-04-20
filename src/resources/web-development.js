@@ -183,6 +183,16 @@ const webDevelopment = {
       subsection: 'General',
       tags: ['git'],
     },
+    {
+      title: 'Next.js',
+      link: 'https://nextjs.org/docs',
+      description: 'The React framework for production - build full-stack web applications with modern features.',
+      imageUrl: 'https://nextjs.org/favicon.ico',
+      dateAdded: '2024-10-28',
+      level: 'intermediate',
+      subsection: 'Full-Stack',
+      tags: ['javascript', 'framework', 'nodejs'],
+    }
   ],
 };
 
