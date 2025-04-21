@@ -81,6 +81,17 @@ const testing = {
       subsection: 'End-to-End Testing',
       tags: ['e2e testing', 'automation', 'testing tools'],
     },
+    {
+      title: 'Vitest',
+      link: 'https://vitest.dev/',
+      description:
+        'A blazing fast unit test framework powered by Vite, designed for modern JavaScript projects.',
+      imageUrl: 'https://vitest.dev/logo.svg',
+      dateAdded: '2025-04-21',
+      level: 'any',
+      subsection: 'Unit Testing',
+      tags: ['javascript', 'vite'],
+    },
   ],
 };
 
