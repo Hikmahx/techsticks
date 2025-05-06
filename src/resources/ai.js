@@ -55,6 +55,16 @@ const ai = {
       subsection: 'General',
       tags: ['models', 'tools', 'research'],
     },
+    {
+      title: 'Cursor AI',
+      link: 'https://www.cursor.com/',
+      description: 'An AI-powered coding assistant designed to enhance developer productivity.',
+      imageUrl: 'https://www.cursor.com/favicon.ico',
+      dateAdded: '2025-05-06',
+      level: 'any',
+      subsection: 'General',
+      tags: ['tools', 'code'],
+    },
   ],
 };
 
