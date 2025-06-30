@@ -36,8 +36,8 @@ export default function ResourceCard({
             <Image
               src={item.imageUrl}
               alt={item.title}
-              width={36}
-              height={36}
+              width={35}
+              height={35}
               className='w-6 h-6 max-w-md m-auto'
             />
           </div>
