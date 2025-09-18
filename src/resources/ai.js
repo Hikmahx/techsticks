@@ -65,6 +65,16 @@ const ai = {
       subsection: 'General',
       tags: ['tools', 'code'],
     },
+    {
+      title: 'Claude AI',
+      link: 'https://claude.ai',
+      description: 'Anthropic’s conversational AI assistant designed for thoughtful, safe, and high-quality interactions.',
+      imageUrl: 'https://claude.ai/favicon.ico',
+      dateAdded: '2025-09-18',
+      level: 'any',
+      subsection: 'General',
+      tags: ['models', 'tools', 'research'],
+    },
   ],
 };
 
