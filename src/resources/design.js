@@ -111,6 +111,16 @@ const design = {
       subsection: 'Animations',
       tags: ['ui'],
     },
+    {
+      title: 'Undraw',
+      link: 'https://undraw.co/',
+      description: 'Open-source illustrations for any idea you can imagine and create.',
+      imageUrl: 'https://undraw.co/apple-touch-icon.png',
+      dateAdded: '2025-10-03',
+      level: 'any',
+      subsection: 'UI/UX',
+      tags: ['ui', 'ux', 'illustrations'],
+    },
   ],
 };
 
