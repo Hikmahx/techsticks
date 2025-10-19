@@ -27,6 +27,17 @@ const blog = {
       subsection: 'Design',
       tags: ['design', 'programming', 'guides', 'tutorials'],
     },
+    {
+      title: 'Hackernoon',
+      link: 'https://hackernoon.com/',
+      description:
+        'A tech blog and publishing platform for developers to share stories, tutorials, and insights across various tech fields.',
+      imageUrl: 'https://hackernoon.com/favicon.ico',
+      dateAdded: '2025-10-19',
+      level: 'any',
+      subsection: 'Tech',
+      tags: ['tech', 'programming', 'inspiration', 'tutorials'],
+    },
   ],
 };
 
