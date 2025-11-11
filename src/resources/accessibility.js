@@ -37,6 +37,16 @@ const accessibility = {
       subsection: 'Tools',
       tags: ['wcag', 'color contrast'],
     },
+    {
+      title: 'A11Y Project',
+      link: 'https://www.a11yproject.com/',
+      description: 'A community-driven resource to make digital accessibility easier, with checklists, patterns, and best practices.',
+      imageUrl: 'https://www.a11yproject.com/apple-touch-icon.png',
+      dateAdded: '2024-10-28',
+      level: 'any',
+      subsection: 'Guides',
+      tags: ['a11y', 'inclusive design', 'wcag'],
+    },
   ],
 };
 
