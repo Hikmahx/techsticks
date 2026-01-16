@@ -19,7 +19,7 @@ const ai = {
       title: 'shadcn/ui',
       link: 'https://ui.shadcn.dev/',
       description: 'A beautiful, accessible component library for building UIs, particularly useful in AI/ML applications.',
-      imageUrl: 'https://ui.shadcn.dev/favicon.ico',
+      imageUrl: 'https://github.com/0paziz/techsticks.git',
       dateAdded: '2024-10-12',
       level: 'any',
       subsection: 'General',
